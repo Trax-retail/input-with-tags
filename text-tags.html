@@ -1,0 +1,4 @@
+<input type="text" ng-model="tagText" ng-keydown="addTag($event)">
+<ul class="tags">
+    <li class="tag" ng-repeat="tag in tags track by $index">{{tag}}</li>
+</ul>

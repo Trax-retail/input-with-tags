@@ -1,0 +1,21 @@
+text-tags {
+  position: relative;
+
+  input {
+    padding: 10px;
+    width: 350px;
+  }
+
+  .tags {
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  .tag {
+    display: inline-block;
+    list-style-type: none;
+  }
+}

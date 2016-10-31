@@ -1,0 +1,170 @@
+// Colors
+
+// https://app.zeplin.io/project.html#pid=566583dc16afbbb821d67ac3&styleguide
+
+//        General
+
+// Menu Item -Hover
+$cellHover: #F6EDFF;
+
+// Selected Menu Item And Focused input field
+$inputActive: #F5F7D2;
+
+// Card Title / selected text
+$cardTitle: #222222;
+
+// Regular text
+$bodyText: #555555;
+
+// Table Header’s background
+$gridHeader: #777777;
+
+// Table cell borders and Line separators on bright background, Input field border
+$border: #DDDDDD;
+
+// Canvas Background Table (darker) Cell fill on zebra style
+$background: #EEEEEE;
+
+// Card background
+$cardBackground: #FFFFFF;
+
+// Input field idle fill
+$inputFieldIdle: #F5F5F5;
+
+// Grid Row Odd
+$gridRowOdd: #FFFFFF;
+
+// Grid Row Even
+$gridRowEven: #F5F5F5;
+
+// background for probes and scenes
+$imageCanvasBackground: url("../assets/img/stripePattern.gif");
+
+// scroller
+
+$scroller: #CFD9DC;
+
+//          Actions
+
+// Actions -Idle
+$action: #7A48A3;
+
+// Top Header / action press
+$actionPress: #582C7D;
+
+// Actions -Hover
+$actionHover: #A863E0;
+
+//Dropdown Row -hover
+$dropDownHover: #f9f2ff;
+
+$dropDownCheckbox: #ccc;
+
+// Action Disabled
+$actionDisabled: #DBCFE6;
+
+//        Links
+
+// Text Link, upload bar
+$linkIdle: #0A92CC;
+
+// Hover Text Link
+$linkHover: #0DB6FF;
+
+//        Icons
+
+// Icon idle fill
+$iconInactive: #AAAAAA;
+
+// Attribute Label, icon hover fill
+$attributeLabel: #999999;
+
+//        Sidebar
+
+// sidebar item idle
+$sidebarItemIdle: #444444;
+
+// sidebar item separator
+$sidebarItemSeparator: #333333;
+
+// sidebar item hover
+$sidebarItemHover: #666666;
+
+//        Feedback
+
+// Delete or Serious Action
+$drama: #FF001F;
+
+// Success
+$success: #86BA38;
+
+//        Active && Selection
+
+// Active items on dark background
+$activeA: #D2DB2F;
+// Active items on bright background
+$activeB: #AEB627;
+// Active items on bright background
+$activeC: #9fa617;
+
+//      Scenes
+
+$bay: #00ffff;
+$endOfAisle: #0ff00f;
+$shelf: #ff00f0;
+
+//randomized avatars for the comments modal per user
+//TODO to make the randomization from one point for all the pages
+$avatar-colors: #6de2c9, #b9e5fd, #fbd9a7, #9fd5d0, #a5b9e7, #fbc6cd, #d0d1fb, #ebc0a2, #f199b3, #ccb5e1, #fdecbb;
+
+
+
+// Defaults
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+body {
+  padding: 20px;
+  background: #fff;
+  color: #222;
+  cursor: auto;
+  font-family: Roboto, Arial, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1.5;
+  position: relative;
+}
+
+
+// page setup
+
+.select2 > .select2-choice.ui-select-match {
+  /* Because of the inclusion of Bootstrap */
+  height: 29px;
+}
+
+.selectize-control > .selectize-dropdown {
+  top: 36px;
+}
+
+/* Some additional styling to demonstrate that append-to-body helps achieve the proper z-index layering. */
+.select-box {
+  background: #fff;
+  position: relative;
+  z-index: 1;
+}
+
+.alert-info.positioned {
+  margin-top: 1em;
+  position: relative;
+  z-index: 10000; /* The select2 dropdown has a z-index of 9999 */
+}
+
+
+
+
+@import "input-with-tags";

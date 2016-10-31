@@ -1,0 +1,51 @@
+*,
+*:before,
+*:after {
+  box-sizing: border-box; }
+
+body {
+  padding: 20px;
+  background: #fff;
+  color: #222;
+  cursor: auto;
+  font-family: Roboto, Arial, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1.5;
+  position: relative; }
+
+.select2 > .select2-choice.ui-select-match {
+  /* Because of the inclusion of Bootstrap */
+  height: 29px; }
+
+.selectize-control > .selectize-dropdown {
+  top: 36px; }
+
+/* Some additional styling to demonstrate that append-to-body helps achieve the proper z-index layering. */
+.select-box {
+  background: #fff;
+  position: relative;
+  z-index: 1; }
+
+.alert-info.positioned {
+  margin-top: 1em;
+  position: relative;
+  z-index: 10000;
+  /* The select2 dropdown has a z-index of 9999 */ }
+
+text-tags {
+  position: relative; }
+  text-tags input {
+    padding: 10px;
+    width: 350px; }
+  text-tags .tags {
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 0;
+    left: 0; }
+  text-tags .tag {
+    display: inline-block;
+    list-style-type: none; }
+
+/*# sourceMappingURL=main.css.map */
