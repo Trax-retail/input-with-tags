@@ -1,6 +1,11 @@
-<input type="text" ng-model="tagText" ng-focus="showSelectList=true" ng-blur="showSelectList=false" ng-keydown="addTag($event)">
+<input type="text"
+       ng-model="tagText"
+       ng-focus="showSelectList=true"
+       ng-blur="showSelectList=false"
+       ng-keydown="addTag($event)">
 <ul class="tags">
-    <li class="tag" ng-repeat="tag in tags track by $index">{{tag}}</li>
+    <li class="tag"
+        ng-repeat="tag in tags track by $index">{{tag}}</li>
 </ul>
 <ul class="options" ng-show="showSelectList">
     <li ng-repeat="option in options | filter:tagText">{{option}}</li>

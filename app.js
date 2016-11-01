@@ -27,8 +27,14 @@ angular.module('input-with-tags', [])
         });
     }
 
-    function removeSelectedTags (selectedTags, allTags) {
-        return _.pullAll(allTags, selectedTags);
+    function updateSelectedTags (selectedTags, allTags, removedTag) {
+        var options;
+        options = _.pullAll(allTags, selectedTags);
+        if (removedTag) {
+            options.push(removedTag)
+        }
+        options.sort();
+        return options;
     }
 
     return {
@@ -36,16 +42,18 @@ angular.module('input-with-tags', [])
         templateUrl: 'text-tags.html',
         scope: {
             tags: '=tags',
-            options: '=options'
+            options: '=options',
+            customTagsAllowed: '=customTagsAllowed'
         },
         link: function(scope, element, attr) {
             var input = element.find('input');
             var tagList = element.find('ul');
+            var originalOptions = _.clone(scope.options);
 
             tagsAddVisualPadding(input, tagList[0]);
 
             scope.tagText = '';
-            scope.options = removeSelectedTags(scope.tags, scope.options);
+            scope.options = updateSelectedTags(scope.tags, scope.options);
             scope.bla = function (e) { console.log(e) };
 
             scope.addTag = function (e) {
@@ -53,7 +61,7 @@ angular.module('input-with-tags', [])
                 if (e.key === 'Enter') {
                     scope.tags.push(scope.tagText);
                     scope.tagText = '';
-                    scope.options = removeSelectedTags(scope.tags, scope.options);
+                    scope.options = updateSelectedTags(scope.tags, scope.options);
 
                     // for some ridiculous reason focus() only works with timeout.
                     $timeout(function () {
@@ -65,7 +73,9 @@ angular.module('input-with-tags', [])
                 } else if (e.key === 'Backspace') {
                     if (scope.tagText === '') {
                         var deletedTag = scope.tags.pop();
-                        scope.options.push(deletedTag);
+
+                        scope.options = updateSelectedTags(scope.tags, scope.options, deletedTag);
+
                         tagsAddVisualPadding(input, tagList[0]);
                     }
                 }
