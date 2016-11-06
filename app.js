@@ -8,11 +8,11 @@ angular.module('input-with-tags', [])
         'dsdffd'
     ];
     $scope.options1 = [
-        'ilya',
-        'slavo',
-        'eyal',
-        'gil',
-        'nir'
+        { value: 'ajhgjhp', text: 'ilya 1' },
+        { value: 'bksjdfb', text: 'ilya 2' },
+        { value: 'clfjlkd', text: 'xcvx' },
+        { value: 'dlfkgjl', text: 'dfdsfsf' },
+        { value: 'egoifjb', text: 'dfdsfsf' }
     ];
 })
 
@@ -53,11 +53,18 @@ angular.module('input-with-tags', [])
             tagsAddVisualPadding(input, tagList[0]);
 
             scope.tagText = '';
+            scope.showSelectList = false;
             scope.options = updateSelectedTags(scope.tags, scope.options);
-            scope.bla = function (e) { console.log(e) };
+
+            scope.bla = function (e) { console.log(e, 'bla') };
+
+            scope.hideSelectList = function () {
+                $timeout(function () {
+                    scope.showSelectList=false
+                });
+            };
 
             scope.addTag = function (e) {
-
                 if (e.key === 'Enter') {
                     scope.tags.push(scope.tagText);
                     scope.tagText = '';
@@ -73,9 +80,11 @@ angular.module('input-with-tags', [])
                 } else if (e.key === 'Backspace') {
                     if (scope.tagText === '') {
                         var deletedTag = scope.tags.pop();
+                        if (!_.includes(originalOptions, deletedTag)) { // do not add custom tags to list
+                            deletedTag = undefined;
+                        }
 
                         scope.options = updateSelectedTags(scope.tags, scope.options, deletedTag);
-
                         tagsAddVisualPadding(input, tagList[0]);
                     }
                 }

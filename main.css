@@ -34,6 +34,7 @@ body {
   /* The select2 dropdown has a z-index of 9999 */ }
 
 text-tags {
+  display: block;
   position: relative; }
   text-tags input {
     padding: 10px;
@@ -45,7 +46,7 @@ text-tags {
     list-style-type: none; }
   text-tags .tags {
     position: absolute;
-    top: 0;
+    top: 8px;
     left: 0; }
   text-tags .tag {
     display: inline-block;
