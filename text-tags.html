@@ -1,7 +1,7 @@
 <input type="text"
        class="text-tags-input"
        ng-model="tagText"
-       ng-keydown="addTag($event)"
+       ng-keydown="inputKeyPress($event)"
        list="tag-options">
 <ul class="tags">
     <li class="tag" ng-repeat="tag in tags track by $index">

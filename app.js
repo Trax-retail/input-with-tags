@@ -59,22 +59,22 @@ angular.module('input-with-tags', [])
             scope.showSelectList = false;
             scope.options = updateSelectedTags(scope.tags, scope.options);
 
-            scope.bla = function (e) {
-                console.log(e, 'bla');
-            };
 
-            scope.addTag = function (e) {
-                if (e.key === 'Enter') {
-                    scope.tags.push(scope.tagText);
-                    scope.tagText = '';
-                    scope.options = updateSelectedTags(scope.tags, scope.options);
+            scope.inputKeyPress = function (e) {
+                if ((e.key === 'Enter') &&
+                   ((scope.tagText && scope.customTagsAllowed) ||
+                   (!scope.customTagsAllowed && _.includes(originalOptions, scope.tagText)))) {
 
-                    // for some ridiculous reason focus() only works with timeout.
-                    $timeout(function () {
-                        input[0].focus();
-                    });
+                        scope.tags.push(scope.tagText);
+                        scope.tagText = '';
 
-                    tagsAddVisualPadding(input, tagList[0]);
+                        $timeout(function () { // for some ridiculous reason focus() only works with timeout.
+                            input[0].focus();
+                        });
+
+                        tagsAddVisualPadding(input, tagList[0]);
+                        scope.options = updateSelectedTags(scope.tags, scope.options);
+
 
                 } else if (e.key === 'Backspace') {
                     if (scope.tagText === '') {
@@ -83,7 +83,7 @@ angular.module('input-with-tags', [])
                 }
             };
 
-            scope.deleteTag = function (deletedTag) {
+            scope.deleteTag = function (deletedTag) { // Always removes ALL instances of same tag
                 _.pull(scope.tags, deletedTag);
                 if (!_.includes(originalOptions, deletedTag)) { // do not add custom tags to list
                     deletedTag = undefined;
