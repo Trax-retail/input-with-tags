@@ -78,13 +78,7 @@ angular.module('input-with-tags', [])
 
                 } else if (e.key === 'Backspace') {
                     if (scope.tagText === '') {
-                        var deletedTag = scope.tags.pop();
-                        if (!_.includes(originalOptions, deletedTag)) { // do not add custom tags to list
-                            deletedTag = undefined;
-                        }
-
-                        tagsAddVisualPadding(input, tagList[0]);
-                        scope.options = updateSelectedTags(scope.tags, scope.options, deletedTag);
+                        scope.deleteTag(scope.tags.pop())
                     }
                 }
             };
