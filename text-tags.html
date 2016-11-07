@@ -4,7 +4,10 @@
        ng-keydown="addTag($event)"
        list="tag-options">
 <ul class="tags">
-    <li class="tag" ng-repeat="tag in tags track by $index">{{tag}}</li>
+    <li class="tag" ng-repeat="tag in tags track by $index">
+        {{tag}}
+        <span class="delete-tag" ng-click="deleteTag(tag)">x</span>
+    </li>
 </ul>
 <datalist id="tag-options">
     <option ng-repeat="option in options" value="{{option}}"></option>

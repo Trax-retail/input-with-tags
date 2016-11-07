@@ -38,7 +38,7 @@ text-tags {
   position: relative; }
   text-tags input {
     padding: 8px;
-    width: 350px; }
+    width: 100%; }
   text-tags ul {
     margin: 0;
     padding: 0; }

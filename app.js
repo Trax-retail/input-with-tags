@@ -27,11 +27,11 @@ angular.module('input-with-tags', [])
         });
     }
 
-    function updateSelectedTags (selectedTags, allTags, removedTag) {
+    function updateSelectedTags (selectedTags, allTags, deletedTag) {
         var options;
         options = _.pullAll(allTags, selectedTags);
-        if (removedTag) {
-            options.push(removedTag)
+        if (deletedTag) {
+            options.push(deletedTag)
         }
         options.sort();
         return options;
@@ -49,7 +49,7 @@ angular.module('input-with-tags', [])
         },
 
         link: function(scope, element, attr) {
-            var input = element.find('input');
+            var input = element.find('textarea');
             var tagList = element.find('ul');
             var originalOptions = _.clone(scope.options);
 
@@ -58,6 +58,10 @@ angular.module('input-with-tags', [])
             scope.tagText = '';
             scope.showSelectList = false;
             scope.options = updateSelectedTags(scope.tags, scope.options);
+
+            scope.bla = function (e) {
+                console.log(e, 'bla');
+            };
 
             scope.addTag = function (e) {
                 if (e.key === 'Enter') {
@@ -79,11 +83,21 @@ angular.module('input-with-tags', [])
                             deletedTag = undefined;
                         }
 
-                        scope.options = updateSelectedTags(scope.tags, scope.options, deletedTag);
                         tagsAddVisualPadding(input, tagList[0]);
+                        scope.options = updateSelectedTags(scope.tags, scope.options, deletedTag);
                     }
                 }
             };
+
+            scope.deleteTag = function (deletedTag) {
+                _.pull(scope.tags, deletedTag);
+                if (!_.includes(originalOptions, deletedTag)) { // do not add custom tags to list
+                    deletedTag = undefined;
+                }
+
+                tagsAddVisualPadding(input, tagList[0]);
+                scope.options = updateSelectedTags(scope.tags, scope.options, deletedTag);
+            }
         }
     };
 });
