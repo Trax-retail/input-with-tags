@@ -49,7 +49,7 @@ angular.module('input-with-tags', [])
         },
 
         link: function(scope, element, attr) {
-            var input = element.find('textarea');
+            var input = element.find('input');
             var tagList = element.find('ul');
             var originalOptions = _.clone(scope.options);
 
