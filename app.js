@@ -4,15 +4,15 @@ angular.module('input-with-tags', [])
 
 .controller('ctrl', function($scope) {
     $scope.tags1 = [
-        'dsfds',
-        'dsdffd'
+        'djfds',
+        'dsdjfd'
     ];
     $scope.options1 = [
-        { value: 'ajhgjhp', text: 'ilya 1' },
-        { value: 'bksjdfb', text: 'ilya 2' },
-        { value: 'clfjlkd', text: 'xcvx' },
-        { value: 'dlfkgjl', text: 'dfdsfsf' },
-        { value: 'egoifjb', text: 'dfdsfsf' }
+        'ilya',
+        'slavo',
+        'eyal',
+        'gil',
+        'nir'
     ];
 })
 
@@ -39,12 +39,15 @@ angular.module('input-with-tags', [])
 
     return {
         restrict: 'E',
+
         templateUrl: 'text-tags.html',
+
         scope: {
             tags: '=tags',
             options: '=options',
             customTagsAllowed: '=customTagsAllowed'
         },
+
         link: function(scope, element, attr) {
             var input = element.find('input');
             var tagList = element.find('ul');
@@ -55,14 +58,6 @@ angular.module('input-with-tags', [])
             scope.tagText = '';
             scope.showSelectList = false;
             scope.options = updateSelectedTags(scope.tags, scope.options);
-
-            scope.bla = function (e) { console.log(e, 'bla') };
-
-            scope.hideSelectList = function () {
-                $timeout(function () {
-                    scope.showSelectList=false
-                });
-            };
 
             scope.addTag = function (e) {
                 if (e.key === 'Enter') {
