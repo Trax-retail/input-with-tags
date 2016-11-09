@@ -1,14 +1,16 @@
-<input type="text"
-       class="text-tags-input"
-       ng-model="tagText"
-       ng-keydown="inputKeyPress($event)"
-       list="tag-options">
 <ul class="tags">
     <li class="tag" ng-repeat="tag in tags track by $index">
         {{tag}}
         <span class="delete-tag" ng-click="deleteTag(tag)">x</span>
     </li>
 </ul>
+
+<input type="text"
+       class="text-tags-input"
+       ng-model="tagText"
+       ng-keydown="inputKeyPress($event)"
+       list="tag-options">
+
 <datalist id="tag-options">
     <option ng-repeat="option in options" value="{{option}}"></option>
 </datalist>

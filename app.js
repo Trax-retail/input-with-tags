@@ -22,7 +22,8 @@ angular.module('input-with-tags', [])
 
     function tagsAddVisualPadding(input, tagList) {
         $timeout(function () {
-            var tagListLength = Math.floor(tagList.getBoundingClientRect().width);
+            tagList.css({ 'position' : 'absolute'});
+            var tagListLength = Math.floor(tagList[0].getBoundingClientRect().width);
             input.css({ 'padding-left' : tagListLength + 10 + 'px' });
         });
     }
@@ -45,7 +46,8 @@ angular.module('input-with-tags', [])
         scope: {
             tags: '=tags',
             options: '=options',
-            customTagsAllowed: '=customTagsAllowed'
+            customTagsAllowed: '=customTagsAllowed',
+            inline: '=inline'
         },
 
         link: function(scope, element, attr) {
@@ -53,7 +55,9 @@ angular.module('input-with-tags', [])
             var tagList = element.find('ul');
             var originalOptions = _.clone(scope.options);
 
-            tagsAddVisualPadding(input, tagList[0]);
+            if (scope.inline) {
+                tagsAddVisualPadding(input, tagList);
+            }
 
             scope.tagText = '';
             scope.showSelectList = false;
@@ -61,9 +65,9 @@ angular.module('input-with-tags', [])
 
 
             scope.inputKeyPress = function (e) {
-                if ((e.key === 'Enter') &&
-                   ((scope.tagText && scope.customTagsAllowed) ||
-                   (!scope.customTagsAllowed && _.includes(originalOptions, scope.tagText)))) {
+                if  ((e.key === 'Enter') &&
+                    ((scope.customTagsAllowed && scope.tagText) ||
+                    (!scope.customTagsAllowed && _.includes(originalOptions, scope.tagText)))) {
 
                         scope.tags.push(scope.tagText);
                         scope.tagText = '';
@@ -72,11 +76,12 @@ angular.module('input-with-tags', [])
                             input[0].focus();
                         });
 
-                        tagsAddVisualPadding(input, tagList[0]);
+                        if (scope.inline) {
+                            tagsAddVisualPadding(input, tagList);
+                        }
                         scope.options = updateSelectedTags(scope.tags, scope.options);
 
-
-                } else if (e.key === 'Backspace') {
+                } else if (e.key === 'Backspace' && scope.inline) {
                     if (scope.tagText === '') {
                         scope.deleteTag(scope.tags.pop())
                     }
@@ -89,7 +94,9 @@ angular.module('input-with-tags', [])
                     deletedTag = undefined;
                 }
 
-                tagsAddVisualPadding(input, tagList[0]);
+                if (scope.inline) {
+                    tagsAddVisualPadding(input, tagList);
+                }
                 scope.options = updateSelectedTags(scope.tags, scope.options, deletedTag);
             }
         }
